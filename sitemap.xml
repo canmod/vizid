@@ -1,16 +1,16 @@
 <urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
-<url><loc>/404.html</loc></url>
-<url><loc>/CODE_OF_CONDUCT.html</loc></url>
-<url><loc>/CONTRIBUTING.html</loc></url>
-<url><loc>/LICENSE.html</loc></url>
-<url><loc>/articles/design.html</loc></url>
-<url><loc>/articles/index.html</loc></url>
-<url><loc>/authors.html</loc></url>
-<url><loc>/index.html</loc></url>
-<url><loc>/reference/index.html</loc></url>
-<url><loc>/reference/init_roles.html</loc></url>
-<url><loc>/reference/init_vizid.html</loc></url>
-<url><loc>/reference/smallpox_ontario.html</loc></url>
-<url><loc>/reference/vizid-package.html</loc></url>
+<url><loc>https://canmod.github.io/vizid/404.html</loc></url>
+<url><loc>https://canmod.github.io/vizid/CODE_OF_CONDUCT.html</loc></url>
+<url><loc>https://canmod.github.io/vizid/CONTRIBUTING.html</loc></url>
+<url><loc>https://canmod.github.io/vizid/LICENSE.html</loc></url>
+<url><loc>https://canmod.github.io/vizid/articles/design.html</loc></url>
+<url><loc>https://canmod.github.io/vizid/articles/index.html</loc></url>
+<url><loc>https://canmod.github.io/vizid/authors.html</loc></url>
+<url><loc>https://canmod.github.io/vizid/index.html</loc></url>
+<url><loc>https://canmod.github.io/vizid/reference/index.html</loc></url>
+<url><loc>https://canmod.github.io/vizid/reference/init_roles.html</loc></url>
+<url><loc>https://canmod.github.io/vizid/reference/init_vizid.html</loc></url>
+<url><loc>https://canmod.github.io/vizid/reference/smallpox_ontario.html</loc></url>
+<url><loc>https://canmod.github.io/vizid/reference/vizid-package.html</loc></url>
 </urlset>
 

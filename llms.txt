@@ -1,0 +1,56 @@
+# vizid
+
+The goal of *vizid* is to make it easy to visualize infectious-disease
+data in `R`, particularly data obtained from the [International
+Infectious Disease Data Archive
+(IIDDA)](https://github.com/canmod/iidda). It provides tools for
+transforming data frames so they carry the metadata needed to visualize
+themselves.
+
+The package is pre-alpha – we are documenting our [design
+ideas](https://canmod.github.io/vizid/articles/design.html) as we
+develop it.
+
+## Installation
+
+You can install the development version of vizid from
+[GitHub](https://github.com/) with:
+
+``` r
+# install.packages("remotes")
+remotes::install_github("canmod/vizid")
+```
+
+## Code of Conduct
+
+Please note that the vizid project is released with a [Contributor Code
+of
+Conduct](https://contributor-covenant.org/version/2/1/CODE_OF_CONDUCT.html).
+By contributing to this project, you agree to abide by its terms.
+
+# Package index
+
+## Initializing Data Structures
+
+Functions for initializing data structures.
+
+- [`init_roles()`](https://canmod.github.io/vizid/reference/init_roles.md)
+  : Initialize Variable Roles
+
+- [`init_vizid()`](https://canmod.github.io/vizid/reference/init_vizid.md)
+  :
+
+  Create a `vizid` Object
+
+## Example Data
+
+Data that can be used to try vizid out.
+
+- [`smallpox_ontario`](https://canmod.github.io/vizid/reference/smallpox_ontario.md)
+  : Data on Smallpox in Ontario
+
+# Articles
+
+### All vignettes
+
+- [Design](https://canmod.github.io/vizid/articles/design.md):
