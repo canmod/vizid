@@ -8,15 +8,9 @@
 #' \describe{
 #'   \item{period_start_date}{The first date within the time interval for which a count was reported, in ISO-8601 format (i.e. YYYY-MM-DD). Must be of the form <start date>..<end date>.}
 #'   \item{period_end_date}{The last date within the time interval for which a count was reported, in ISO-8601 format (i.e. YYYY-MM-DD). Must be of the form <start date>..<end date>.}
-#'   \item{cases_this_period}{Number of cases reported for this period, at the end of this period, as reported by the original source. May include different types of missing values as reported by the original source.}
-#'   \item{location}{Location descriptor as reported in the original source.}
-#'   \item{time_scale}{Time scale of recorded data (wk, 2wk, mo, qr, yr). A qualitative and approximate measure of the time scale over which data were counted.}
-#'   \item{historical_disease}{Disease name as reported by the original source.}
 #'   \item{days_this_period}{Number of days in the reporting interval, computed from \code{period_start_date} and \code{period_end_date}.}
 #'   \item{population}{Estimated total number of individuals associated with a particular record.}
-#'   \item{original_dataset_id}{Identifier linking this record back to the original dataset from which it was sourced.}
-#'   \item{digitization_id}{Identifier linking this record to a specific digitization event (e.g., transcription of a historical table).}
-#'   \item{scan_id}{Identifier linking this record to the scanned image or page from which it was digitized.}
+#'   \item{cases_this_period}{Number of cases reported for this period, at the end of this period, as reported by the original source. May include different types of missing values as reported by the original source.}
 #' }
 #' @source <https://github.com/canmod/iidda>
 "smallpox_ontario"

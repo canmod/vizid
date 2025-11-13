@@ -25,8 +25,8 @@ You can install the development version of vizid from
 [GitHub](https://github.com/) with:
 
 ``` r
-# install.packages("pak")
-pak::pak("canmod/vizid")
+# install.packages("remotes")
+remotes::install_github("canmod/vizid")
 ```
 
 ## Code of Conduct
