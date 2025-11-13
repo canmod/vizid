@@ -8,9 +8,16 @@
 [![R-CMD-check](https://github.com/canmod/vizid/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/canmod/vizid/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
-The goal of vizid is to make it easy to visualize infection disease
-data, particular data obtained from the International Infectious Disease
-Data Archive (IIDDA).
+The goal of *vizid* is to make it easy to visualize infectious-disease
+data in `R`, particularly data obtained from the [International
+Infectious Disease Data Archive
+(IIDDA)](https://github.com/canmod/iidda). It provides tools for
+transforming data frames so they carry the metadata needed to visualize
+themselves.
+
+The package is pre-alpha – we are documenting our [design
+ideas](https://canmod.github.io/vizid/articles/design.html) as we
+develop it.
 
 ## Installation
 
