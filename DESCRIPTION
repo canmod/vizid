@@ -1,0 +1,22 @@
+Package: vizid
+Title: Visualize Infectious Disease Data
+Version: 0.0.0.9000
+Authors@R: 
+    person("Steve", "walker", , "stevencarlislewalker@gmail.com", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0002-4394-9078"))
+Description: Tools for visualizing infectious disease data, with special 
+    support for datasets that use the data dictionary of the International 
+    Infectious Disease Data Archive (IIDDA).
+License: GPL (>= 3)
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2
+Suggests: 
+    knitr,
+    rmarkdown,
+    testthat (>= 3.0.0)
+Imports:
+    ggplot2
+Config/testthat/edition: 3
+VignetteBuilder: knitr
+Config/build/clean-inst-doc: FALSE

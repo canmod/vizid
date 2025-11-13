@@ -1,0 +1,156 @@
+---
+title: "Design"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Design}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(vizid)
+```
+
+## Purpose
+
+The `vizid` package makes it easy to visualize infectious disease data in `R`. It provides functionality for transforming data frames so that they know how to visualize themselves.
+
+## Data Frames are Primary Objects
+
+Many functions in this package are **transformers**: they take a data frame and return a modified data frame. The data frame acts as the single source of truth for both your **data** and the **state** of your visualization session.
+
+In this context, *state* refers to information stored in attributes—such as:
+
+- which variables should be used for which roles in the visualization (e.g., the `cases` variable should be the `series_variable` used in a time-series plot).
+- `ggplot2` components that will be combined to produce a plot object.
+- other metadata captured during previous steps that influences default plotting behaviour.
+
+Because transformers carry this state forward, you use them in a pipeline that ultimately produces a data frame ready for plotting.
+
+```{r, eval = FALSE}
+vizid_object <- (data
+  # transformers from other packages that you love
+  |> non_vizid_functions()
+  |> ...
+  
+  # transformers that modify data *and* carry forward state
+  |> vizid_functions()     
+  |> ...
+)
+
+data_frame_exploration_function(vizid_object)
+plot(vizid_object)
+```
+
+One consequence of this design is that you can inspect the **data that will be plotted** using all the standard R tools for examining data frames (`head()`, `summary()`, dplyr verbs, etc.). This is intentional: the visible content of the data frame always reflects the data that `vizid` will plot. Other aspects of the session state—such as inferred variable roles, user-supplied choices, and metadata collected along the way—are stored in **attributes**, which ordinary data-frame tools ignore but which you can view with `attributes()` if needed.
+
+If you want to insert your own transformation into a `vizid` pipeline, you can write a custom transformer and wrap it using the helper provided by `vizid`, ensuring that your function returns a modified data frame **and** preserves all relevant `vizid` attributes.
+
+The final step in a `vizid` pipeline is another data frame—one that includes the information required to produce a plot. This aligns with base R behaviour: `plot(data)` works for any data frame. `vizid` simply ensures that, for historical infectious-disease data, the resulting plot is informative and context-aware while still respecting the explicit choices you make (e.g., selecting the correct series when multiple candidates exist).
+
+## Variable Mappings
+
+## Data Preparation Steps
+
+## Plot Components
+
+## Data Prep Functions
+
+These functions do too many things, but that might be OK if we define what these things are and stick to it at an abstract level.
+
+* They set the roles associated with particular variables as attributes
+* They transform the data in the standard 'data-prep' way
+* They merge variable roles and derived objects of the inputs with those of the outputs (does merging involve validity as well? is this mixing purposes?)
+* They set derived objects, that may be needed by downstream functions, as attributes
+
+Some of these data-in / data-out functions have an important first step: initializing the `vizid` attributes of the data. The first step of this first step is to clear the existing attributes. If you try to call a data-in / data-out function without this first step, on a dataset without such a set of attributes, you will get an error. This error will tell you about the set of functions that you can use to start off a visualization process.
+
+## Attribute Data Structure
+
+* `class` : S3 extension of the original `data` object indicating the type of plot that is being produced. This type 
+* `variable_roles` : TODO -- define type
+  * 
+* `messages` : methods to be called downstream, typically containing derived quantities in their environment
+  * I don't want to actually have these
+  * But we need them to pass messages
+  * However, keep in mind that we only need to pass messages if we need to compute something on the current state of the data, and then use it later downstream after the data have changed -- so it is a last resort
+  * This is information leakage caused by temporal decomposition, and so maybe I should keep longer classes
+* `plot_components` : list of lists of lists
+  * Each item in the outer list is associated with a single plot object, which might be the result of several plots being combined using. [patchwork](https://patchwork.data-imaginist.com/). 
+  * Each item in the middle lists is associated with a collection of plots that could be combined into a single plot using [patchwork](https://patchwork.data-imaginist.com/), or are a collection of one plot already and therefore do not need combining.
+  * Each item in the inner lists is associated with a [ggplot2](https://ggplot2.tidyverse.org/) component (e.g., [a geom](https://ggplot2.tidyverse.org/reference/#geoms), [a facetting scheme](https://ggplot2.tidyverse.org/reference/#facetting)), which can be added together to produce a single plot object.
+
+
+
+## Derived Datasets
+
+Sometimes you need to produce two versions of your data. For example, in a plot that combines two plots: one that visualizes the original data and one that visualizes an aggregated version of these data. In this case, the aggregated version should be sent down a path of producing its own visualization and then the resulting plot object should be placed in the `plot_components` of the attributes of the original dataset.
+
+
+## Functions for Querying Data
+
+An example might be a function that guesses about the title of the plot by looking into the name of values of the variable on the y-axis.
+
+## Functions of Data Returning Plot Components
+
+These are special versions of functions that query data, in that the results of the queries are objects that go in the `plot_components` element of the attributes (e.g., output of something `geom_line` or `facet_wrap` or `aes`).
+
+
+## Arguments that Accept Either Querying Functions or (for convenience) Values that Could be Returned by Querying Functions
+
+
+## Functions that Set Variable Roles
+
+## Functions that Guess Variable Roles
+
+## Types of Arguments and Return Values
+
+* `data` : Data frames -- with attributes
+* `variable_roles` : a mapping that associates each type of variable categorized by its role in visualization (e.g., `series_variable`) to a type of variable categorized by its role in epidemiology (e.g., `cases_this_period`)
+
+
+## Function Signatures
+
+Many (all?) of the above types of functions differ only in their return type, and not in their argument signature.
+```{r, eval = FALSE}
+a_function = function(data, variable_roles) {}
+```
+
+There is often a need for more inputs than these two arguments. For example, we want to pass additional arguments to functions being wrapped (e.g., `scale_y_continuous`). Another example might involve passing in a colour scheme to use, or a summarizing statistic. The possibilities are endless. The way we handle this is through constructors.
+
+```{r, eval = FALSE}
+a_constructor = function(args_scale_y_continuous = list()) {
+  function(data, variable_roles) {}
+}
+```
+
+We can create alternative constructors where we build up the arguments to pass on using custom logic.
+
+```{r, eval = FALSE}
+custom_constructor = function()
+```
+
+
+## Naming Convensions
+
+
+
+## Notes
+
+
+* Spread them out in proportion to the time-series
+* Spread them out uniformly
+* Allow non-integer
+* Identifying the heap weeks
+* Look for outliers
+* Not everything in the heap weeks are heaped values -- need to make a decision about this
+
+
+
