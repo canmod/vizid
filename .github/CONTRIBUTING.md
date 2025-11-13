@@ -23,7 +23,7 @@ We generally follow the [tidyverse style guide](https://tidyverse.tidyverse.org/
 
 ## Argument Checking
 
-The `check.R` file contains functions that begin with `check_`, and are intended to check arguments of user-facing functions. They either throw an error if the argument is not valid, and return `NULL` otherwise. These check functions should not be used in internal functions, so that we focus on writing messages that give users the help the need while we protect ourselves. Internal error messages about arguments are just alienating to users.
+The `R/check.R` file contains functions that begin with `check_`, and are intended to check arguments of user-facing functions. They either throw an error if the argument is not valid, and return `NULL` otherwise. These check functions should not be used in internal functions, so that we focus on writing messages that give users the help the need while we protect ourselves. Internal error messages about arguments are just alienating to users.
 
 ## Code of Conduct
 

@@ -1,0 +1,33 @@
+url: https://canmod.github.io/vizid/
+template:
+  bootstrap: 5
+  package: vizid
+  includes:
+# math that renders properly in the offline helpful with (\eqn and \deqn)
+# is not rendering on pkgdown. this magic seems to work for now.
+# https://github.com/r-lib/pkgdown/issues/2704#issuecomment-2307055568
+    in_header: |
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
+      <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script>
+      <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
+navbar:
+  structure:
+    left:  [intro, reference, articles]
+    right: [search, github]
+home:
+  sidebar:
+    structure: [toc, links, license, community, citation, authors, dev]
+  links:
+  - text: Maintainer
+    href: https://github.com/stevencarlislewalker
+reference:
+- title: Initializing Data Structures
+  desc: >
+    Functions for initializing data structures.
+  contents:
+  - starts_with("init_")
+- title: Example Data
+  desc: >
+    Data that can be used to try vizid out.
+  contents:
+  - smallpox_ontario
