@@ -71,6 +71,10 @@
 <li>Functions that take data and return plot components must be named by prefixing the component name with the special verb, <code>build_</code>.</li>
 </ul></div>
 <div class="section level2">
+<h2 id="argument-checking">Argument Checking<a class="anchor" aria-label="anchor" href="#argument-checking"></a></h2>
+<p>The <code>check.R</code> file contains functions that begin with <code>check_</code>, and are intended to check arguments of user-facing functions. They either throw an error if the argument is not valid, and return <code>NULL</code> otherwise. These check functions should not be used in internal functions, so that we focus on writing messages that give users the help the need while we protect ourselves. Internal error messages about arguments are just alienating to users.</p>
+</div>
+<div class="section level2">
 <h2 id="code-of-conduct">Code of Conduct<a class="anchor" aria-label="anchor" href="#code-of-conduct"></a></h2>
 <p>Please note that the vizid project is released with a <a href="CODE_OF_CONDUCT.html">Contributor Code of Conduct</a>. By contributing to this project you agree to abide by its terms.</p>
 </div>
