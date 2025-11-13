@@ -14,9 +14,16 @@ RoxygenNote: 7.3.2
 Suggests: 
     knitr,
     rmarkdown,
-    testthat (>= 3.0.0)
+    testthat (>= 3.0.0),
+    dplyr,
+    iidda.api
 Imports:
-    ggplot2
+    ggplot2,
+    data.table
 Config/testthat/edition: 3
 VignetteBuilder: knitr
+Additional_repositories: https://canmod.r-universe.dev
 Config/build/clean-inst-doc: FALSE
+Depends: 
+    R (>= 2.10)
+LazyData: true

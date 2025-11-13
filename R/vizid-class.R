@@ -33,3 +33,15 @@ init_vizid_metadata = function(
   structure(lst, class = "vizid_metadata")
 }
 
+#' @importFrom data.table setattr
+#' @param data A `vizid` object.
+#' @noRd
+set_role = function(data, role, variable_name) {
+  value = attr(data, "vizid")
+  value$roles[[role]] = variable_name
+  data.table::setattr(data, "vizid", value)
+  invisible(data)
+}
+get_role = function(data, role) {
+  attr(data, "vizid")$roles[[role]]
+}

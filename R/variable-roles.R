@@ -109,10 +109,12 @@ print.vizid_roles = function(x, ...) {
   if (length(explicit_roles) == 0L) {
     msg = print_msg("No explicit roles for variables")
   } else {
-    title = print_msg("How variables would be used in visualizations:")
-    map = sprintf("  %s: %s", names(explicit_roles), unname(explicit_roles))
+    title = print_msg("How variables would be used in a visualization:")
+    map = sprintf("  would use `%s` as the `%s`"
+      , unname(explicit_roles)
+      , names(explicit_roles)
+    )
     msg = c(title, map)
-
   }
   msg |> cat(sep = "\n")
   invisible(x)
@@ -172,20 +174,21 @@ std_series_variables = function() {
 # Utilities for working with standard role assignments
 
 ## List all defined roles
-list_std = function() {
+list_std_fn_nms = function() { # e.g., std_series_variables
   ("vizid"
     |> getNamespace()
     |> ls(pattern = "^std_[_a-z]+_variables$")
   )
 }
-list_roles = function() {
-  x = list_std()
+list_roles = function() { # e.g., series
+  x = list_std_fn_nms()
   x = sub("^std_", "", x)
   x = sub("_variables$", "", x)
   return(x)
 }
-list_role_names = function() {
-  x = list_std()
+list_role_args = function() { # e.g., series_variable
+  x = list_std_fn_nms()
   x = sub("^std_", "", x)
+  x = sub("_variables$", "_variable", x)
   return(x)
 }

@@ -4,7 +4,6 @@ print_msg = function(...) {
     |> unlist(recursive = TRUE, use.names = FALSE)
     |> trimws()
     |> paste(collapse = "\n")
-    |> append("\n", after = 0)
   )
 }
 

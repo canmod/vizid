@@ -10,7 +10,7 @@
 #'
 #' @noRd
 make_class_checker = function(cls, suggest = \(arg) character(0L)) {
-  function(value, arg, fn) {
+  function(value, arg, fn = character()) {
     if (!inherits(value, cls)) {
       input_cls = flatten_class(value)
       throw_error(
@@ -56,6 +56,10 @@ make_class_checker = function(cls, suggest = \(arg) character(0L)) {
 #' ```
 #'
 #' @noRd
+check_vizid = make_class_checker(
+    cls = "vizid"
+  , suggest = \(arg) sprintf("`init_vizid(%s)`", arg)
+)
 check_data_frame = make_class_checker( ## function factory
     cls = "data.frame"
   , suggest = \(arg) sprintf("`as.data.frame(%s)`", arg)
@@ -73,7 +77,7 @@ check_init_roles = function(arg_list, fn) {
       msg = append(msg, sprintf(template, arg))
     }
 
-    if (!arg %in% list_role_names()) {
+    if (!arg %in% list_role_args()) {
       template = "%s is not a valid variable role"
       msg = append(msg, sprintf(template, arg))
     }
